@@ -11,7 +11,7 @@ class UserInformation extends StatefulWidget {
 }
 
 class _UserInformationState extends State<UserInformation> {
-  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('users').snapshots();
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('users').where('age', isGreaterThan: 30).orderBy('age', descending: false).snapshots();
  Future<void> deleteUser(String documentId) {
     return FirebaseFirestore.instance
         .collection('users')
